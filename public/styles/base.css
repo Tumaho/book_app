@@ -10,6 +10,48 @@ header{
     position: sticky;
     top: 0;
 }
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+  
+  
+  .topnav #myLinks {
+    display: none;
+  }
+  
+ 
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  
+  .topnav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+   
+    right: 0;
+    top: 0;
+  }
+  
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  
+  .active {
+    background-color: black;
+    color: white;
+    
+  }
 
 nav{
     display: grid;
@@ -63,10 +105,9 @@ div img {
 
 footer{
     background-color: black;
-    position: fixed;
     bottom: 0;
     color: white;
-    height: 10vh;
+    height: 7vh;
     width: 100%;
 }
 
@@ -107,7 +148,7 @@ body h1:nth-child(2){
     margin: 5%;
 }
 
-form{
+#searchForm{
     width: 70%;
     margin: 0 auto;
     display: flex;
@@ -118,11 +159,11 @@ form{
 }
 
 
-input{
+#searchForm input{
     display: inline-block;
 }
 
-input[type=text]{
+#searchForm input[type=text]{
     width: 100%;
     height: 15vh;
     text-align: center;
@@ -130,7 +171,7 @@ input[type=text]{
     border: none;
 }
 
-input[type=submit]{
+#searchForm input[type=submit]{
     width: 100%;
     height: 15vh;
     background-color: black;
@@ -139,7 +180,7 @@ input[type=submit]{
     border-radius: 5px;
 }
 
-label{
+#searchForm label{
     background-color: #d8d8d8;
     border: none;
     border-radius: 5px;
@@ -149,10 +190,22 @@ label{
     align-items: center;
 }
 
-label span{
+#searchForm label span{
     padding-left: 5%;
 }
 
-label input{
+#searchForm label input{
     padding-left: 1%;
 }
+#DESC{
+    height: 120px;
+    overflow: scroll;
+}
+.detailsImg {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* #centerA{
+    text-align: center;
+} */

@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
+    <title>Home</title>
     <link rel="stylesheet" href="/styles/reset.css">
     <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -34,44 +33,26 @@
               x.style.display = "block";
             }
           }</script>
-        <section id="page">Search Results</section>
+        <section id="page">Book Details</section>
     </header>
 
-    <main>
-        
-        <% book.forEach(val => {%>
-        <div>
-            <img src="<%= val.imageUrl%>" />
-            <h3> <%= val.titleName %> </h3>
-            <h4> <%= val.authorName %> </h4>
-            <p id="DESC"> <%= val.description %> </p>
-            <section class='form' >
-                <form action='/obada/<%= val.id%>' method='post'>
-                    <input type="text" name="bookshelf" placeholder="Enter a bookshelf" required>
-                    <button type="submit">ADD THIS BOOK</button>
-                </form>
-            </section>
-            <button onclick="hidee()">SELECT THIS BOOK</button>
-            
-            
-        </div>
-        <br>
-        <% }) %>
-        
-    </main>
-    <script>
-        $(".form").hide();
-        function hidee(){
-            $(".form").toggle();
-        }
-    </script>
+    <section>
+        <% console.log(details.title)%>
+        <img class="detailsImg" src=<%= details.url %>>
+        <p>Title: <%= details.title %></p>
+        <p>Authors: <%= details.author %></p>
+        <p>Description: <%= details.description %></p>
+        <p>ISBN: <%= details.isbn %></p>
+        <p>Bookshelf: <%= details.bookshelf %></p>
+        </section>
+
     <footer>
         <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
     </footer>
 </body>
 
