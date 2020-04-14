@@ -7,6 +7,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="/styles/reset.css">
     <link rel="stylesheet" href="/styles/base.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -37,7 +38,7 @@
     </header>
 
     <section>
-        <% console.log(details.title)%>
+        
         <img class="detailsImg" src=<%= details.url %>>
         <p>Title: <%= details.title %></p>
         <p>Authors: <%= details.author %></p>
@@ -45,7 +46,29 @@
         <p>ISBN: <%= details.isbn %></p>
         <p>Bookshelf: <%= details.bookshelf %></p>
         </section>
-
+        <center><form action="/delete/<%= details.id %>?_method=delete" method="POST">
+            <button type ='submit'> DELETE </button>
+        </form></center>
+        <center><button id="updateButton">UPDATE</button></center>
+        <center><form action="/update/<%= details.id %>?_method=put " method="post" id="updateForm">
+            <label >Title:</label>
+            <input type="text" name="title" value="<%= details.title %>" required>
+            <label >Author:</label>
+            <input type="text" name="author" value="<%= details.author %>" required>
+            <label >ISBN:</label>
+            <input type="text" name="isbn" value="<%= details.isbn %>" required>
+            <label >Bookshelf:</label>
+            <input type="text" name="bookshelf" value="<%= details.bookshelf %>" required>
+            <p >Description:</p>
+            <textarea name="description"  cols="30" rows="10" required><%= details.description %></textarea>
+            <button type ='submit'> Submit </button>
+        </form></center>
+        <script>
+          $('#updateForm').hide();
+          $('#updateButton').on('click',function(){
+            $('#updateForm').toggle();
+          })
+        </script>
     <footer>
         <ul>
             <li></li>
