@@ -209,3 +209,7 @@ body h1:nth-child(2){
 /* #centerA{
     text-align: center;
 } */
+#updateForm input {
+    display: block;
+    margin: 10px;
+}

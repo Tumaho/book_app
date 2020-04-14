@@ -2,14 +2,14 @@
 
 require('dotenv').config();
 const express = require('express');
-
+const methodOverride = require('method-override');
 const PORT = process.env.PORT || 3030;
 const app = express();
 const superagent = require('superagent');
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.static('./public'));
-
+app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('views', './views');
@@ -59,7 +59,7 @@ function booksObject(ele) {
     this.titleName = ele.volumeInfo.title;
     this.authorName = ele.volumeInfo.authors;
     if (ele.volumeInfo.industryIdentifiers != undefined) this.ISBN=ele.volumeInfo.industryIdentifiers[0].identifier; 
-    else this.ISBN = 'hhhhhhhhhhhhhhhhh';
+    else this.ISBN = '0000';
     
     this.id=ele.id;
 
@@ -93,12 +93,30 @@ app.get('/obada/:id',(req,res)=>{
     let SQL = `SELECT * FROM books_info WHERE id = '${unique}';`;
             client.query(SQL)
             .then(data =>{
-                console.log('ooooooooooooooooooooooooooooo',data.rows[0].isbn);
+                
 
                 res.render('pages/books/details',{details:data.rows[0]});
             })
 })
 
+app.put('/update/:id',(req,res)=>{
+    let unique = req.params.id;
+    let {title,author,description,isbn,bookshelf} = req.body;
+    let SQL = 'UPDATE books_info SET title=$1,author=$2,description=$3,isbn=$4,bookshelf=$5 WHERE id=$6;';
+    let safe = [title,author,description,isbn,bookshelf,unique];
+    client.query(SQL,safe)
+    .then(data =>{
+        res.redirect(`/obada/${unique}`);
+    })
+})
+
+app.delete('/delete/:id',(req,res)=>{
+    let unique = req.params.id;
+    let SQL = 'DELETE FROM books_info WHERE id=$1;';
+    let safe = [unique];
+    client.query(SQL,safe)
+    .then(res.redirect('/'));
+})
 
 
 
